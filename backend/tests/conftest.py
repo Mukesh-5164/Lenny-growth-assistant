@@ -38,7 +38,7 @@ class FakeRegistry(ProviderRegistry):
 
 @pytest.fixture
 def settings(tmp_path):
-    return Settings(_env_file=None, database_url=f"sqlite:///{tmp_path}/t.db", auto_ingest=False, log_level="WARNING")
+    return Settings(_env_file=None, database_url=f"sqlite:///{tmp_path}/t.db", auto_ingest=False, log_level="WARNING", rate_limit_per_minute=0)
 
 
 @pytest.fixture
