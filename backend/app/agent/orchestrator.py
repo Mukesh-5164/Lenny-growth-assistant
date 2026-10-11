@@ -61,7 +61,7 @@ _FOLLOWUP = re.compile(r"^\s*(and|but|also|so|what about|how about)\b|"
                        r"\b(that|this|it|those|them|these|above|previous|earlier|more|another|else|elaborate|expand|examples?)\b", re.I)
 
 
-def build_query(user_text: str, prior_user: list[str] | None = None) -> str:
+def build_query(user_text: str, prior_user: list[str] | None = None, intent: str | None = None) -> str:
     """Standalone topic query (routing words stripped). `prior_user` is only passed for genuine follow-ups."""
     topic = " ".join(_NOISE.sub(" ", user_text).split())
     if not topic:
