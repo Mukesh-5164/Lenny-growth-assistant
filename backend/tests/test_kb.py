@@ -1,3 +1,4 @@
+from pathlib import Path
 from app.kb.bm25 import BM25, tokenize
 from app.kb.chunking import chunk_turns, normalize_ts, parse_turns, split_frontmatter
 from app.kb.index import KnowledgeIndex
@@ -6,7 +7,8 @@ from app.db import make_engine
 
 
 def test_frontmatter_and_turns_hhmmss():
-    meta, body = split_frontmatter(open("tests/fixtures/episodes/alice-example/transcript.md").read())
+    path = Path(__file__).parent / "fixtures" / "episodes" / "alice-example" / "transcript.md"
+    meta, body = split_frontmatter(path.read_text(encoding="utf-8"))
     assert meta["guest"] == "Alice Example"
     turns = parse_turns(body)
     assert turns[1].speaker == "Alice Example" and turns[1].ts == "00:00:30"
